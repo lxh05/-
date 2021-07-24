@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/* *用来匹配页面上的所有元素 */
+body {
+    background: #1e90ff;
+}
+/* 设置一些基础属性，背景颜色之类的 */
+.main {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    box-sizing: border-box;
+    border-radius: 50%; 
+    /* 设置居中属性 */
+    background: transparent;
+   /* 水滴背景颜色透明 */
+    box-shadow: inset 10px 20px 30px rgba(0, 0, 0, 0.5),
+    /*在左上位置画一层深色的内阴影*/ 
+    10px 10px 20px rgba(0, 0, 0, 0.3),
+    /* 右下位置绘制一层深色的外阴影，和左上形成对比稍微有点立体的感觉 */
+    15px 15px 30px rgba(0, 0, 0, 0.05),
+    /* 右下的阴影再描一层，扩大一些阴影 */
+     inset -10px -10px 15px rgba(255, 255, 255, 0.8);
+     /* 右下的位置绘制一层内阴影的高亮部分 */
+    animation: move 6s linear infinite;
+    -webkit-animation: move 6s linear infinite;
+    /* 播放6s，用linear的方式播放，循环播放（infinite） */
+}
+
+.main::after {
+    position: absolute;
+    content: "";
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.5);
+    left: 80px;
+    top: 80px;
+    border-radius: 50%;
+    animation: move2 6s linear infinite;
+    filter:blur(1px);
+}
+/* 用来绘制反光点使用伪类after */
+
+.main::before {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    left: 130px;
+    top: 70px;
+    border-radius: 50%;
+    animation: move3 6s linear infinite;
+    filter:blur(1px);
+    -webkit-animation: move3 6s linear infinite;
+}
+/* 用来绘制反光点使用伪类before */
+@keyframes move {
+/* 通过 @keyframes 规则，能够创建动画 */
+    50% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+    /* 百分比是指整个动画耗时的百分比 */
+    75% {
+        border-radius: 74% 26% 70% 30% / 78% 76% 24% 22%;
+    }
+    25% {
+        border-radius: 51% 49% 43% 57% / 43% 68% 32% 57%;
+    }
+}
+/* 随机生成几个样式让水滴动起来 */
+
+@keyframes move2 {
+    50% {
+        left: 60px;
+        top: 80px;
+    }
+    75% {
+        left: 80px;
+        top: 120px;
+    }
+    25% {
+        left: 50px;
+        top: 120px;
+    }
+}
+
+@keyframes move3 {
+    50% {
+        left: 110px;
+        top: 75px;
+    }
+    75% {
+        left: 130px;
+        top: 100px;
+    }
+    25% {
+        left: 100px;
+        top: 90px;
+    }
+}
